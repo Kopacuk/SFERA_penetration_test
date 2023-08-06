@@ -8,17 +8,29 @@ public class SelenideScript {
 
     public static void main(String[] args) throws InterruptedException {
 
+
+        String login = System.getenv("login");
+        String password = System.getenv("password");
+
+        if(login == null) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите логин: ");
+            login = scanner.nextLine();
+        }
+
+        if(password == null) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите пароль: ");
+            password = scanner.nextLine();
+        }
+
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Введите логин: ");
-        String login = scanner.nextLine();
-
-        System.out.print("Введите пароль: ");
-        String password = scanner.nextLine();
+        System.out.print("Введите URL Тест-Плана: ");
+        String testPlanURL = scanner.nextLine();
 
 
         //указываем урл тест-плана
-        open("https://sfera.inno.local/testing/project/SGPS/test-plans/SGPS-TP-13");
+        open(testPlanURL);
 
         $x("//input[@name='username']").sendKeys(login);
         $x("//input[@name='password']").sendKeys(password);
