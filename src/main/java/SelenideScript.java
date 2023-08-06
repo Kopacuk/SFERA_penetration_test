@@ -1,15 +1,23 @@
 import com.codeborne.selenide.Condition;
 import java.time.Duration;
 import static com.codeborne.selenide.Selenide.*;
+import java.util.Scanner;
 
 
 public class SelenideScript {
 
     public static void main(String[] args) throws InterruptedException {
 
-        String login = System.getenv("login");
-        String password = System.getenv("password");
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.print("Введите логин: ");
+        String login = scanner.nextLine();
+
+        System.out.print("Введите пароль: ");
+        String password = scanner.nextLine();
+
+
+        //указываем урл тест-плана
         open("https://sfera.inno.local/testing/project/SGPS/test-plans/SGPS-TP-13");
 
         $x("//input[@name='username']").sendKeys(login);
